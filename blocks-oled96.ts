@@ -1,14 +1,14 @@
 /**
  * Provides functions to control the Grove OLED 0.96" from a Calliope Mini.
  */
-//% color=#fabe58 icon="\uf108" block="Grove OLED"
+//% color=#fabe58 icon="\uf108" block="OLED液晶屏"
 namespace oled96 {
     /**
      * Resets the display and clears it.
      * Should be used at the start of the program.
      */
     //% blockId=oled96_init_display
-    //% block="initialize display"
+    //% block="OLED液晶屏初始化"
     export function initDisplay(): void {
         cmd(DISPLAY_OFF);
         cmd(0x20);
@@ -24,7 +24,7 @@ namespace oled96 {
      * Clears the whole display.
      */
     //% blockId=oled96_clear_display
-    //% block="clear display"
+    //% block="清空屏幕"
     export function clearDisplay() {
         cmd(DISPLAY_OFF);   //display off
         for (let j = 0; j < 8; j++) {
@@ -46,7 +46,7 @@ namespace oled96 {
      * @param n Number of characters to delete
      */
     //% blockId=oled96_clear_range
-    //% block="clear %n|characters"
+    //% block="清除第 %n|个之后的全部字符"
     export function clearRange(n: number) {
         for (let i = 0; i < n; i++) {
             putChar(' ');
@@ -57,7 +57,7 @@ namespace oled96 {
      * Move the cursor to a new position.
      */
     //% blockId=oled96_set_text
-    //% block="set display cursor to|row %row|and column %column"
+    //% block="将光标定位在第 %row| 行，第 %column 列"
     export function setTextXY(row: number, column: number) {
         let r = row;
         let c = column;
@@ -88,7 +88,7 @@ namespace oled96 {
      * Writes a string to the display at the current cursor position.
      */
     //% blockId=oled96_write_string
-    //% block="write %s|to display"
+    //% block="显示 %s| 字符串"
     export function writeString(s: string) {
         for (let c of s) {
             putChar(c);
@@ -99,7 +99,7 @@ namespace oled96 {
      * Changes the display to white characters on a black background.
      */
     //% blockId=oled96_normal_display
-    //% block="set display to white on black"
+    //% block="显示设置为黑底白字模式"
     export function normalDisplay() {
         cmd(NORMAL_DISPLAY);
     }
@@ -108,7 +108,7 @@ namespace oled96 {
      * Changes the display to black characters on a white background.
      */
     //% blockId=oled96_invert_display
-    //% block="set display to black on white"
+    //% block="显示设置为白底黑字模式"
     export function invertDisplay() {
         cmd(INVERT_DISPLAY);
     }
@@ -117,7 +117,7 @@ namespace oled96 {
      * Flips the display upside down.
      */
     //% blockId=oled96_flip_screen
-    //% block="flip display"
+    //% block="翻转显示"
     export function flipScreen() {
         cmd(DISPLAY_OFF);
         cmd(COM_SCAN_INC);
@@ -133,7 +133,7 @@ namespace oled96 {
      * Changes the brightness of the display. Values range from 0 to 255.
      */
     //% blockId=oled96_set_brightness
-    //% block="set display brightness|to %brightness"
+    //% block="设置显示亮度为： %brightness"
     export function setDisplayBrightness(brightness: number) {
         let b = brightness
         if (b < 0) {
@@ -150,7 +150,7 @@ namespace oled96 {
      * Turns the display off.
      */
     //% blockId=oled96_turn_off
-    //% block="turn display off"
+    //% block="熄灭液晶屏"
     export function turnOff() {
         cmd(DISPLAY_OFF);
     }
@@ -159,7 +159,7 @@ namespace oled96 {
      * Turns the display on.
      */
     //% blockId=oled96_turn_on
-    //% block="turn display on"
+    //% block="点亮液晶屏"
     export function turnOn() {
         cmd(DISPLAY_ON);
     }
@@ -173,7 +173,7 @@ namespace oled96 {
      * Ex. "\x00\xFF\x81\x81\x81\xFF\x00\x00"
      */
     //% blockId=oled96_write_custom_char
-    //% block="write custom character %c"
+    //% block="显示自定义字符： %c"
     export function writeCustomChar(c: string) {
         for (let i = 0; i < 8; i++) {
             writeData(c.charCodeAt(i));
@@ -188,7 +188,7 @@ namespace oled96 {
      * the SSD1308.
      */
     //% blockId=oled96_send_command
-    //% block="send command %c|to display"
+    //% block="向液晶屏发送指令： %c|"
     export function cmd(c: number) {
         pins.i2cWriteNumber(0x3c, c, NumberFormat.UInt16BE);
     }
@@ -198,7 +198,7 @@ namespace oled96 {
      * Could be used to directly paint to the display.
      */
     //% blockId=oled96_write_data
-    //% block="send data %n|to display"
+    //% block="显示数据 %n|"
     export function writeData(n: number) {
         let b = n;
         if (n < 0) { n = 0 }
