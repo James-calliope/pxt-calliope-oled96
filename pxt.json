@@ -1,7 +1,7 @@
 {
-    "name": "calliope-oled96",
+    "name": "Oled96液晶屏",
     "version": "1.0.0",
-    "description": "",
+    "description": "Oled96液晶屏扩展库汉化版",
     "license": "MIT",
     "dependencies": {
         "core": "*"
